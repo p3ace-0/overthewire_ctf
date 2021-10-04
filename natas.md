@@ -43,3 +43,24 @@
     passwd: DBfUBfqQG69KvJvJ1iAbMoIpwSNQ9bWe 
     info: Remote code execution
     doc: https://github.com/RoqueNight/LFI---RCE-Cheat-Sheet
+---
+
+### Natas8 &#8594; Natas9
+    passwd: W0mMhUcRRnG8dcghE4qvk3JA9lGt8nDl
+  info: 
+  ```php
+  >>>$ phpsh 
+  Starting php
+  type 'h' or 'help' to see instructions & features  
+  php> $encodedSecret = "3d3d516343746d4d6d6c315669563362";                                                                                     
+  function encodeSecret($secret) {
+  return bin2hex(strrev(base64_encode($secret))); 
+  }
+  php> $var_base64_rev = strrev(base64_encode($encodedSecret));
+  php> echo $var_base64_rev;
+  =IjNzMjN1kjN2UTMzMmNkZDZ0QmN0czM0MjNxUDZzQ2M
+  php> $my_secret = base64_decode(strrev(hex2bin($encodedSecret)));
+  php> echo $my_secret;
+  oubWYf2kBq
+  ```
+    doc: base64 && ascii table
